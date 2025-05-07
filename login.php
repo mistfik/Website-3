@@ -4,7 +4,6 @@ require_once 'includes/db.php';
 require_once 'includes/functions.php';
 require_once 'includes/auth.php';
 
-// Проверка авторизации ДО любого вывода
 if (isLoggedIn()) {
     header('Location: ' . (isAdmin() ? 'admin/index.php' : 'orders.php'));
     exit;
