@@ -1,15 +1,11 @@
 <?php
-// Включение настроек и подключения к БД
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
-
-// Старт сессии (если еще не начата)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Подключение шапки сайта
 include __DIR__ . '/templates/header.php';
 ?>
 
@@ -28,6 +24,5 @@ include __DIR__ . '/templates/header.php';
 </div>
 
 <?php
-// Подключение подвала сайта
 include __DIR__ . '/templates/footer.php';
 ?>
