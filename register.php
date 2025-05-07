@@ -16,8 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name = cleanInput($_POST['full_name']);
     $phone = cleanInput($_POST['phone']);
     $email = cleanInput($_POST['email']);
-
-    // Валидация данных
     if (!validateUsername($username)) {
         $errors[] = 'Логин должен содержать не менее 6 символов кириллицы';
     }
@@ -37,8 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = 'Некорректный email';
     }
-
-    // Проверка уникальности логина
     $stmt = $db->prepare("SELECT id FROM users WHERE username = ?");
     $stmt->execute([$username]);
     if ($stmt->fetch()) {
@@ -46,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        // Сохраняем пароль в открытом виде (только для учебных целей!)
         $stmt = $db->prepare("INSERT INTO users (username, password, full_name, phone, email) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$username, $password, $full_name, $phone, $email]);
 
