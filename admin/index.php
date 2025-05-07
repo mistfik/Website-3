@@ -7,8 +7,6 @@ if (!isAdmin()) {
     header('Location: /login.php');
     exit;
 }
-
-// Обработка действий администратора
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $order_id = (int)$_POST['order_id'];
     
@@ -27,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Получение всех заявок
 $orders = $db->query("
     SELECT o.*, u.username, u.full_name, u.phone, u.email 
     FROM orders o
