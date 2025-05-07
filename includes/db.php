@@ -13,7 +13,6 @@ try {
         ]
     );
     
-    // Явно устанавливаем режим обработки ошибок
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch (PDOException $e) {
@@ -43,8 +42,6 @@ try {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
-
-    // Проверка и создание администратора
     $stmt = $db->prepare("SELECT id FROM users WHERE username = ?");
     $stmt->execute(['admin']);
     if (!$stmt->fetch()) {
